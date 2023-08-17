@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Admin, AdminDocument } from 'src/schemas/admin.schema';
 import { CreateAdminDto } from 'src/dto/admin/create-admin.dto';
 import { UpdateAdminDTO } from 'src/dto/admin/update-admin.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AdminService {
@@ -21,16 +22,43 @@ export class AdminService {
   }
 
   async createAdmin(createdAdminDto: CreateAdminDto): Promise<Admin> {
-    return this.adminModel.create(createdAdminDto);
+    const { username, password, role } = createdAdminDto;
+
+    // Hashear la contraseña antes de almacenarla
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newAdmin = new this.adminModel({
+      username,
+      password: hashedPassword, // Almacena la contraseña hasheada
+      role,
+    });
+
+    return newAdmin.save();
   }
 
   async updateAdmin(
     id: string,
     updatedAdminDto: UpdateAdminDTO,
   ): Promise<Admin> {
-    return this.adminModel.findOneAndUpdate({ _id: id }, updatedAdminDto, {
-      new: true,
-    });
+    const existingAdmin = await this.adminModel.findById(id);
+
+    if (!existingAdmin) {
+      throw new NotFoundException('Admin not found');
+    }
+
+    if (updatedAdminDto.password) {
+      // Hashear la nueva contraseña antes de actualizarla
+      const hashedPassword = await bcrypt.hash(updatedAdminDto.password, 10);
+      existingAdmin.password = hashedPassword;
+      console.log(hashedPassword);
+    }
+    console.log(existingAdmin);
+    Object.assign(updatedAdminDto, existingAdmin);
+
+    const updatedAdmin = await existingAdmin.save();
+    console.log(updatedAdmin);
+
+    return updatedAdmin;
   }
 
   async deleteAdmin(id: string): Promise<Admin> {
