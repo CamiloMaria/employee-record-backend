@@ -3,6 +3,7 @@ import { Admin, AdminDocument } from 'src/schemas/admin.schema';
 import { JwtService } from '@nestjs/jwt';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,7 @@ export class AuthService {
   ): Promise<Admin> | null {
     const admin = await this.adminModel.findOne({ username });
 
-    if (admin && admin.password === password) {
+    if (admin && (await bcrypt.compare(password, admin.password))) {
       return admin;
     }
     return null;
