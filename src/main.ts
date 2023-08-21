@@ -2,11 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import connectDB from './config/config';
-import * as dotnev from 'dotenv';
+import { ConfigService } from '@nestjs/config';
+import { EnvKeys } from './shared/const-values';
+
+const config = new ConfigService();
 
 async function bootstrap() {
-  dotnev.config();
-
   const app = await NestFactory.create(AppModule);
 
   // Configura el título y descripción de la documentación
@@ -21,7 +22,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
   app.enableCors();
 
-  await app.listen(3000);
+  await app.listen(config.get(EnvKeys.PORT));
 }
 bootstrap();
 connectDB();
