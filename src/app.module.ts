@@ -3,14 +3,21 @@ import { AuthModule } from './auth/auth.module';
 import { EmployeeModule } from './employee/employee.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AdminModule } from './admin/admin.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { EnvKeys } from './shared/const-values';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     EmployeeModule,
     AuthModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://Camio:icalriox321@cluster0.yqtoj8y.mongodb.net/extension-finder?retryWrites=true&w=majority',
-    ),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.get(EnvKeys.MONGODB_URI)
+      }),
+      inject: [ConfigService]
+    }),
     AdminModule,
   ],
 })
