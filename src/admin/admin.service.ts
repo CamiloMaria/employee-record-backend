@@ -51,13 +51,16 @@ export class AdminService {
       // Hashear la nueva contraseña antes de actualizarla
       const hashedPassword = await bcrypt.hash(updatedAdminDto.password, 10);
       existingAdmin.password = hashedPassword;
-      console.log(hashedPassword);
     }
-    console.log(existingAdmin);
-    Object.assign(updatedAdminDto, existingAdmin);
+
+    // Solo copiar las propiedades actualizadas de updatedAdminDto
+    for (const [key, value] of Object.entries(updatedAdminDto)) {
+      if (key !== 'password') {
+        existingAdmin[key] = value;
+      }
+    }
 
     const updatedAdmin = await existingAdmin.save();
-    console.log(updatedAdmin);
 
     return updatedAdmin;
   }
