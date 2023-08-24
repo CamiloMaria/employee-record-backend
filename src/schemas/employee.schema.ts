@@ -9,7 +9,7 @@ export class Employee {
   completeName: string;
 
   @Prop()
-  extension: string;
+  extension: number;
 
   @Prop()
   email: string;

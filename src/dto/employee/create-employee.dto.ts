@@ -7,9 +7,9 @@ export class CreateEmployeeDto {
   readonly completeName: string;
 
   @ApiProperty({
-    example: 'x000',
+    example: '0000',
   })
-  readonly extension: string;
+  readonly extension: number;
 
   @ApiProperty({
     example: 'jonDoe@gmail.com',
