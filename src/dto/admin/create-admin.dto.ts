@@ -16,9 +16,4 @@ export class CreateAdminDto {
     enum: ['admin', 'subAdmin'],
   })
   readonly role: string;
-
-  @ApiProperty({
-    example: '2021-01-01T00:00:00.000Z',
-  })
-  readonly created_at: Date;
 }

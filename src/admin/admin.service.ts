@@ -31,6 +31,7 @@ export class AdminService {
       username,
       password: hashedPassword, // Almacena la contraseña hasheada
       role,
+      created_at: new Date(),
     });
 
     return newAdmin.save();
