@@ -76,9 +76,8 @@ After starting the application, you can access the API documentation (Swagger UI
   ```json
   [
     {
-      "id": 1,
-      "name": "John",
-      "lastName": "Doe",
+      "id": 32154soper#54932s,
+      "CompleteName": "John Felipe Martinez",
       "extension": "123",
       "email": "john@gmail.com",
       "department": "Sales",
@@ -97,9 +96,8 @@ After starting the application, you can access the API documentation (Swagger UI
 - **Successful Response** (status code 200):
 ```json
 {
-  "id": 1,
-  "name": "John",
-  "lastName": "Doe",
+  "id": 32154soper#54932s,
+  "CompleteName": "John Felipe Martinez",
   "extension": "123",
   "email": "john@gmail.com",
   "department": "Sales",
@@ -121,9 +119,8 @@ After starting the application, you can access the API documentation (Swagger UI
 - **Request Body:**
 ```json
 {
-  "id": 1,
-  "name": "John",
-  "lastName": "Doe",
+  "id": 32154soper#54932s,
+  "CompleteName": "John Felipe Martinez",
   "extension": "123",
   "email": "john@gmail.com",
   "department": "Sales",
@@ -133,9 +130,8 @@ After starting the application, you can access the API documentation (Swagger UI
 - **Successful response** (status code 200):
 ```json
 {
-  "id": 1,
-  "name": "John",
-  "lastName": "Doe",
+  "id": 32154soper#54932s,
+  "CompleteName": "John Felipe Martinez",
   "extension": "123",
   "email": "john@gmail.com",
   "department": "Sales",
@@ -151,8 +147,7 @@ After starting the application, you can access the API documentation (Swagger UI
 - **Request Body:**
 ```json
 {
-  "name": "Jane",
-  "lastName": "Smith",
+  "CompleteName": "John Felipe Martinez",
   "extension": "456",
   "email": "jane@gmail.com",
   "department": "Marketing",
@@ -162,9 +157,8 @@ After starting the application, you can access the API documentation (Swagger UI
 - **Successful response** (status code 200):
 ```json
 {
-  "id": 1,
-  "name": "Jane",
-  "lastName": "Smith",
+  "id": 32154soper#54932s,
+  "CompleteName": "John Felipe Martinez",
   "extension": "456",
   "email": "jane@gmail.com",
   "department": "Marketing",
@@ -188,9 +182,8 @@ After starting the application, you can access the API documentation (Swagger UI
 - **Successful Response** (status code 200):
 ```json
 {
-  "id": 1,
-  "name": "Jane",
-  "lastName": "Smith",
+  "id": 32154soper#54932s,
+  "CompleteName": "John Felipe Martinez",
   "extension": "456",
   "email": "jane@gmail.com",
   "department": "Marketing",
@@ -221,9 +214,8 @@ After starting the application, you can access the API documentation (Swagger UI
   ```json
   [
     {
-      "id": 1,
-      "name": "John",
-      "lastName": "Doe",
+      "id": 32154soper#54932s,
+      "CompleteName": "John Felipe Martinez",
       "extension": "123",
       "email": "john@gmail.com",
       "department": "Sales",
